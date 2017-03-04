@@ -3,3 +3,9 @@
 ################################################################################
 
 /Debug
+/include/GL
+/include/SDL
+/lib
+/GameForFunny.vcxproj.user
+/GameForFunny.vcxproj.filters
+/GameForFunny.vcxproj
