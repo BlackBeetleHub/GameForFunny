@@ -9,3 +9,8 @@
 /GameForFunny.vcxproj.user
 /GameForFunny.vcxproj.filters
 /GameForFunny.vcxproj
+/Release/GameForFunny.tlog
+/x64/Debug/GameForFunny.tlog
+/Release
+/x64/Debug
+/x64/Release

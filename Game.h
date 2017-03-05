@@ -4,6 +4,7 @@
 #include <GL\glew.h>
 #include <SDL\SDL.h>
 #include <string>
+#include "Sprite.h"
 
 class Game
 {
@@ -21,5 +22,6 @@ private:
 	Game &operator=(const Game &g);
 	int _hight;
 	int _wigth;
+	Sprite _sprite;
 };
 

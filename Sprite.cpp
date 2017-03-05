@@ -2,7 +2,7 @@
 
 
 
-void Sprite::init(int x, int y, int width, int height)
+void Sprite::init(float x, float y, float width, float height)
 {
 	_x = x;
 	_y = y;
@@ -12,7 +12,7 @@ void Sprite::init(int x, int y, int width, int height)
 		glGenBuffers(1, &_vboID);
 
 	}
-
+	// vertex for sprite box / two triangles
 	float vertexData[12];
 
 	vertexData[0] = x + width;
@@ -32,10 +32,27 @@ void Sprite::init(int x, int y, int width, int height)
 
 	vertexData[10] = x + width;
 	vertexData[11] = y + height;
+
+
+	glBindBuffer(GL_ARRAY_BUFFER,_vboID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Sprite::draw()
 {
+	// between this method write how we draw sprite
+	glBindBuffer(GL_ARRAY_BUFFER, _vboID);
+
+	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glDisableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 Sprite::Sprite()
@@ -46,4 +63,7 @@ Sprite::Sprite()
 
 Sprite::~Sprite()
 {
+	if (_vboID != 0) {
+		glDeleteBuffers(sizeof(_vboID), &_vboID);
+	}
 }

@@ -21,8 +21,9 @@ Game::~Game()
 
 void Game::Run()
 {
+	_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f);
 	GameLoop();
-	
+	//_sprite.init(100, 100, 100, 100);
 }
 
 void Game::initSystem(std::string nameWindow, int hight, int wigth)
@@ -40,7 +41,7 @@ void Game::initSystem(std::string nameWindow, int hight, int wigth)
 	if (!mainwindow) /* Die if creation failed */
 		sdldie("Unable to create window");
 	maincontext = SDL_GL_CreateContext(mainwindow);
-	//glewInit();
+	glewInit();
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	//SDL_GL_SetSwapInterval(1);
 	glClearColor(0.0f, 0.0f, 1.0f,1.0f);
@@ -60,7 +61,7 @@ void Game::GameLoop()
 			}
 		}
 		DrawGame();
-
+		//_sprite.draw();
 	}
 }
 
@@ -68,12 +69,8 @@ void Game::DrawGame()
 {
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex2f(0, 0);
-	glVertex2f(0, 500);
-	glVertex2f(500, 500);
-	glEnd();
+	
+	_sprite.draw();
+
 	SDL_GL_SwapWindow(mainwindow);
 }

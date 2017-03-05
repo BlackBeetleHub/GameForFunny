@@ -3,15 +3,15 @@
 class Sprite
 {
 public:
-	void init(int x, int y, int width, int height);
+	void init(float x, float y, float width, float height);
 	void draw();
 	Sprite();
 	~Sprite();
 private:
-	int _x;
-	int _y;
-	int _width;
-	int _height;
+	float _x;
+	float _y;
+	float _width;
+	float _height;
 	GLuint _vboID;
 };
 
