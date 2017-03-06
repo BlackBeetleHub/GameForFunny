@@ -1,5 +1,11 @@
-#version 120
-void main(void)
+
+#version 130
+
+in vec2 vertexPosition;
+
+void main()
 {
-    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    gl_Position.xy = vertexPosition;
+    gl_Position.z = 0.5;
+    gl_Position.w = 0.5;
 }

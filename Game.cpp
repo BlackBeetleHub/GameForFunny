@@ -46,7 +46,7 @@ void Game::initSystem(std::string nameWindow, int hight, int wigth)
 	//SDL_GL_SetSwapInterval(1);
 	glClearColor(0.0f, 0.0f, 1.0f,1.0f);
 	/*SDL_GL_SwapWindow(mainwindow);*/
-
+	initShaders();
 	//DrawGame();
 }
 
@@ -65,12 +65,19 @@ void Game::GameLoop()
 	}
 }
 
+void Game::initShaders()
+{
+	colorProgram.CompileShaders("shaders/colorShading.vert", "shaders/colorShading.frag");
+	colorProgram.AddAttribute("vertexPosition");
+	colorProgram.LinkShaders();
+}
+
 void Game::DrawGame()
 {
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+	colorProgram.use();
 	_sprite.draw();
-
+	colorProgram.unuse();
 	SDL_GL_SwapWindow(mainwindow);
 }

@@ -5,6 +5,8 @@
 #include <SDL\SDL.h>
 #include <string>
 #include "Sprite.h"
+#include "GLSLProgram.h"
+
 
 class Game
 {
@@ -13,8 +15,10 @@ public:
 	~Game();
 	void Run();
 	void initSystem(std::string nameWindow,int hight,int wigth);
+	
 	void GameLoop();
 private:
+	void initShaders();
 	SDL_Window *mainwindow; /* Our window handle */
 	SDL_GLContext maincontext; /* Our opengl context handle */
 	void DrawGame();
@@ -23,5 +27,6 @@ private:
 	int _hight;
 	int _wigth;
 	Sprite _sprite;
+	GLSLProgram colorProgram;
 };
 
